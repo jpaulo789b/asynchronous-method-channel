@@ -20,7 +20,11 @@ import 'package:flutter/services.dart';
 /// channels will interfere with each other's communication.
 ///
 /// See: <https://flutter.dev/platform-channels/>
+
+
 class AsynchronousMethodChannel implements MethodChannel {
+
+  
   static const DEBUG = false;
   static const TAG = "AsyncMethodChannel";
   static const timeout = 5;
@@ -438,5 +442,15 @@ class AsynchronousMethodChannel implements MethodChannel {
       Future Function(MethodCall call, MockResult result) handler) {
     _channel.setMockMethodCallHandler(
         (call) async => _handleMock(call, _jobs, handler));
+  }
+
+  @override
+  bool checkMethodCallHandler(Future Function(MethodCall call) handler) {
+      throw UnimplementedError();
+    }
+  
+    @override
+    bool checkMockMethodCallHandler(Future Function(MethodCall call) handler) {
+    throw UnimplementedError();
   }
 }
